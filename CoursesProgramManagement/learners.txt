@@ -1,49 +1,50 @@
-|L002  |Nguyễn Văn An       |01-01-2000|none    |9.50  |pass  |
-|L003  |Trần Thị Bích       |15-02-1998|none    |5.75  |fail  |
-|L004  |Lê Quang Dũng       |23-03-1995|none    |8.00  |pass  |
-|L005  |Đỗ Minh Đức         |04-04-1999|none    |6.25  |fail  |
-|L006  |Phạm Văn Kiên       |10-05-1997|none    |7.50  |pass  |
-|L007  |Hoàng Thị Lan       |28-06-2001|none    |4.25  |fail  |
-|L008  |Ngô Văn Tùng        |14-07-2003|none    |8.80  |pass  |
-|L009  |Đinh Thị Hằng       |30-08-1996|none    |5.75  |fail  |
-|L010  |Vũ Minh Tuấn        |12-09-2002|none    |9.60  |pass  |
-|L011  |Phan Văn Nam        |21-10-1994|none    |6.95  |fail  |
-|L012  |Trần Thị Mai        |05-11-1990|none    |9.70  |pass  |
-|L013  |Lê Minh Hùng        |18-12-1988|none    |5.85  |fail  |
-|L014  |Đỗ Thị Thu          |27-01-1993|none    |9.20  |pass  |
-|L015  |Phạm Văn Thắng      |03-02-2001|none    |4.90  |fail  |
-|L016  |Nguyễn Minh Tuấn    |22-03-2000|none    |9.10  |pass  |
-|L017  |Hoàng Văn Khánh     |09-04-1992|none    |6.65  |fail  |
-|L018  |Đỗ Thị Minh         |17-05-1994|none    |8.50  |pass  |
-|L019  |Nguyễn Văn Hưng     |28-06-1991|none    |5.90  |fail  |
-|L020  |Phạm Thị Hoa        |15-07-1989|none    |9.30  |pass  |
-|L021  |Trần Văn Toàn       |03-08-1998|none    |6.20  |fail  |
-|L022  |Lê Thị Ánh          |21-09-1996|none    |7.85  |pass  |
-|L023  |Vũ Thị Hương        |29-10-1997|none    |6.55  |fail  |
-|L024  |Ngô Minh Thái       |11-11-1999|none    |8.40  |pass  |
-|L025  |Phan Văn Dũng       |19-12-1995|none    |4.75  |fail  |
-|L026  |Đỗ Thị Yến          |01-01-1998|none    |9.45  |pass  |
-|L027  |Trần Minh Quân      |15-02-2000|none    |5.35  |fail  |
-|L028  |Lê Quang Hà         |23-03-2001|none    |8.85  |pass  |
-|L029  |Đỗ Văn Khải         |17-04-1993|none    |6.15  |fail  |
-|L030  |Phạm Văn Long       |04-05-1990|none    |9.05  |pass  |
-|L031  |Hoàng Thị Tuyết     |14-06-1988|none    |4.45  |fail  |
-|L032  |Ngô Thị Lụa         |09-07-1996|none    |8.75  |pass  |
-|L033  |Đinh Văn Toản       |22-08-1991|none    |5.05  |fail  |
-|L034  |Vũ Văn Hiếu         |11-09-1992|none    |9.15  |pass  |
-|L035  |Phan Thị Mai        |02-10-1994|none    |5.65  |fail  |
-|L036  |Trần Văn Cường      |28-11-1990|none    |9.25  |pass  |
-|L037  |Lê Minh Hải         |19-12-1993|none    |6.85  |fail  |
-|L038  |Đỗ Thị Duyên        |01-01-1987|none    |8.30  |pass  |
-|L039  |Nguyễn Văn Đông     |17-02-1985|none    |5.55  |fail  |
-|L040  |Phạm Văn Bình       |25-03-1991|none    |9.50  |pass  |
-|L041  |Hoàng Văn Phát      |14-04-1989|none    |6.40  |fail  |
-|L042  |Ngô Thị Phượng      |07-05-1993|none    |8.60  |pass  |
-|L043  |Đinh Văn Bảo        |21-06-1995|none    |4.65  |fail  |
-|L044  |Vũ Thị Ngọc         |12-07-1990|none    |8.95  |pass  |
-|L045  |Phan Văn Đạt        |18-08-1997|none    |6.70  |fail  |
-|L046  |Trần Thị Nhung      |09-09-1992|none    |9.10  |pass  |
-|L047  |Lê Văn Tâm          |23-10-1988|none    |6.05  |fail  |
-|L048  |Đỗ Thị Minh         |27-11-1996|none    |8.50  |pass  |
-|L049  |Nguyễn Thị Lê       |15-12-1994|none    |5.25  |fail  |
-|L050  |Phạm Văn Mạnh       |19-01-1990|none    |9.35  |pass  |
+|L002  |Nguyễn Văn An         |01-01-2000  |NONE      |9.5     |Pass    |
+|L003  |Trần Thị Bích         |15-02-1998  |NONE      |5.75    |Fail    |
+|L004  |Lê Quang Dũng         |23-03-1995  |NONE      |8.0     |Pass    |
+|L005  |Đỗ Minh Đức           |04-04-1999  |NONE      |6.25    |Fail    |
+|L006  |Phạm Văn Kiên         |10-05-1997  |NONE      |7.5     |Pass    |
+|L007  |Hoàng Thị Lan         |28-06-2001  |NONE      |4.25    |Fail    |
+|L008  |Ngô Văn Tùng          |14-07-2003  |NONE      |8.8     |Pass    |
+|L009  |Đinh Thị Hằng         |30-08-1996  |NONE      |5.75    |Fail    |
+|L010  |Vũ Minh Tuấn          |12-09-2002  |NONE      |9.6     |Pass    |
+|L011  |Phan Văn Nam          |21-10-1994  |NONE      |6.95    |Fail    |
+|L012  |Trần Thị Mai          |05-11-1990  |NONE      |9.7     |Pass    |
+|L013  |Lê Minh Hùng          |18-12-1988  |NONE      |5.85    |Fail    |
+|L014  |Đỗ Thị Thu            |27-01-1993  |NONE      |9.2     |Pass    |
+|L015  |Phạm Văn Thắng        |03-02-2001  |NONE      |4.9     |Fail    |
+|L016  |Nguyễn Minh Tuấn      |22-03-2000  |NONE      |9.1     |Pass    |
+|L017  |Hoàng Văn Khánh       |09-04-1992  |NONE      |6.65    |Fail    |
+|L018  |Đỗ Thị Minh           |17-05-1994  |NONE      |8.5     |Pass    |
+|L019  |Nguyễn Văn Hưng       |28-06-1991  |NONE      |5.9     |Fail    |
+|L020  |Phạm Thị Hoa          |15-07-1989  |NONE      |9.3     |Pass    |
+|L021  |Trần Văn Toàn         |03-08-1998  |NONE      |6.2     |Fail    |
+|L022  |Lê Thị Ánh            |21-09-1996  |NONE      |7.85    |Pass    |
+|L023  |Vũ Thị Hương          |29-10-1997  |NONE      |6.55    |Fail    |
+|L024  |Ngô Minh Thái         |11-11-1999  |NONE      |8.4     |Pass    |
+|L025  |Phan Văn Dũng         |19-12-1995  |NONE      |4.75    |Fail    |
+|L026  |Đỗ Thị Yến            |01-01-1998  |NONE      |9.45    |Pass    |
+|L027  |Trần Minh Quân        |15-02-2000  |NONE      |5.35    |Fail    |
+|L028  |Lê Quang Hà           |23-03-2001  |NONE      |8.85    |Pass    |
+|L029  |Đỗ Văn Khải           |17-04-1993  |NONE      |6.15    |Fail    |
+|L030  |Phạm Văn Long         |04-05-1990  |NONE      |9.05    |Pass    |
+|L031  |Hoàng Thị Tuyết       |14-06-1988  |NONE      |4.45    |Fail    |
+|L032  |Ngô Thị Lụa           |09-07-1996  |NONE      |8.75    |Pass    |
+|L033  |Đinh Văn Toản         |22-08-1991  |NONE      |5.05    |Fail    |
+|L034  |Vũ Văn Hiếu           |11-09-1992  |NONE      |9.15    |Pass    |
+|L035  |Phan Thị Mai          |02-10-1994  |NONE      |5.65    |Fail    |
+|L036  |Trần Văn Cường        |28-11-1990  |NONE      |9.25    |Pass    |
+|L037  |Lê Minh Hải           |19-12-1993  |NONE      |6.85    |Fail    |
+|L038  |Đỗ Thị Duyên          |01-01-1987  |NONE      |8.3     |Pass    |
+|L039  |Nguyễn Văn Đông       |17-02-1985  |NONE      |5.55    |Fail    |
+|L040  |Phạm Văn Bình         |25-03-1991  |NONE      |9.5     |Pass    |
+|L041  |Hoàng Văn Phát        |14-04-1989  |NONE      |6.4     |Fail    |
+|L042  |Ngô Thị Phượng        |07-05-1993  |NONE      |8.6     |Pass    |
+|L043  |Đinh Văn Bảo          |21-06-1995  |NONE      |4.65    |Fail    |
+|L044  |Vũ Thị Ngọc           |12-07-1990  |NONE      |8.95    |Pass    |
+|L045  |Phan Văn Đạt          |18-08-1997  |NONE      |6.7     |Fail    |
+|L046  |Trần Thị Nhung        |09-09-1992  |NONE      |9.1     |Pass    |
+|L047  |Lê Văn Tâm            |23-10-1988  |NONE      |6.05    |Fail    |
+|L048  |Đỗ Thị Minh           |27-11-1996  |NONE      |8.5     |Pass    |
+|L049  |Nguyễn Thị Lê         |15-12-1994  |NONE      |5.25    |Fail    |
+|L050  |Phạm Văn Mạnh         |19-01-1990  |NONE      |9.35    |Pass    |
+|L001  |Ph?m Anh Ki?t         |17/08/2005  |C002      |4.0     |Pass    |

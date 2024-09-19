@@ -5,6 +5,12 @@
         <group>
             <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/runtime/App.java</file>
             <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/data/EntityManager.java</file>
+            <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/data/Topic.java</file>
+            <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/data/Learner.java</file>
+            <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/utils/Inputter.java</file>
+            <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/utils/StringProcessor.java</file>
+            <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/data/Course.java</file>
+            <file>file:/D:/LearningMaterial/FPTU/LAB211/Project/CoursesProgramManagement/src/ui/Menu.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,5 +1,6 @@
-|T002  |Artificial Intelligence       |short|harness the power of AI                           |       5|
-|T005  |Digital Marketing             |Long |How to manipulate the market                      |      20|
-|T003  |Math for beginer              |Long |The Power of math                                 |      10|
-|T004  |Skills for academic's survial |short|how to get the most out of lectures               |       3|
-|T001  |Software Engineer             |Long |learn the basic                                   |      10|
+|T002  |Artificial Intelligence         |Short    |Harness The Power Of Ai                           |5         |
+|T005  |Digital Marketing               |Long     |How To Manipulate The Market                      |20        |
+|T003  |Math For Beginer                |Long     |The Power Of Math                                 |10        |
+|T004  |Skills For Academic's Survial   |Short    |How To Get The Most Out Of Lectures               |3         |
+|T001  |Software Engineer               |Long     |Learn The Basic                                   |10        |
+|T006  |Q?e                             |Q?e      |Q?e                                               |5         |

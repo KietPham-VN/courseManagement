@@ -64,7 +64,7 @@ public class EntityManager {
 
     public void searchTopicByName() {
         ArrayList<Topic> newList = new ArrayList<>();
-        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!", TOPICID_REGEX);
+        String topicName = Inputter.getString("Enter topic's name: ", "That field is required!");
 
         // Lọc các chủ đề và thêm vào newList
         for (Entity entity : myList) {
@@ -96,7 +96,7 @@ public class EntityManager {
 
     // hàm search dựa trên topic
     public void searchCourseByTopic() {
-        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!", COURSEID_REGEX);
+        String topicName = Inputter.getString("Enter topic's name: ", "That field is required!");
         ArrayList<Topic> topicsFound = searchTopicByName(topicName);
         ArrayList<Course> result = new ArrayList<>();
 
@@ -120,7 +120,7 @@ public class EntityManager {
 
     public void searchCourseByName() {
         ArrayList<Course> courseList = new ArrayList<>();
-        String courseName = Inputter.getString("Enter Course's name(Cxxx): ", "That field is required!", COURSEID_REGEX);
+        String courseName = Inputter.getString("Enter Course's name: ", "That field is required!");
         for (Entity entity : myList) {
             if (entity.getUniqueID().startsWith("C")) {
                 Course course = (Course) entity;
@@ -669,7 +669,6 @@ public class EntityManager {
         } else {
             System.out.println("Update canceled.");
         }
-
     }
 
     // hàm xác nhận dùng khi có update hoặc xóa
