@@ -20,10 +20,19 @@ public class EntityManager {
     private static final String COURSE_URL = "D:\\LearningMaterial\\FPTU\\LAB211\\Project\\CoursesProgramManagement\\courses.txt";
     private static final String LEARNER_URL = "D:\\LearningMaterial\\FPTU\\LAB211\\Project\\CoursesProgramManagement\\learners.txt";
 
-    // những cái pattern để in ra cho đẹp
-    public static final String TOPIC_PATTERN = "|%-6s|%-32s|%-9s|%-50s|%-10s|%n";
-    public static final String COURSE_PATTERN = "|%-6s|%-32s|%-9s|%-6s|%-37s|%-12s|%-12s|%-10s|%13s|%17s|%6s|%10s|%n";
-    public static final String LEARNER_PATTERN = "|%-6s|%-22s|%-12s|%-10s|%-8s|%-8s|%n";
+    //regex cho update
+    private static final String UPDATE_TOPICID_REGEX = "^([Tt]\\d+)?$";
+    private static final String UPDATE_COURSEID_REGEX = "^([Cc]\\d+)?$";
+
+    // regex cho hàm add
+    private static final String TOPICID_REGEX = "[Tt]\\d+";
+    private static final String COURSEID_REGEX = "[Cc]\\d+";
+    private static final String LEARNERID_REGEX = "[Ll]\\d+";
+
+    // những cái PRINT_pattern để in ra cho đẹp
+    public static final String TOPIC_PRINT_PATTERN = "|%-6s|%-32s|%-9s|%-50s|%-10s|%n";
+    public static final String COURSE_PRINT_PATTERN = "|%-6s|%-32s|%-9s|%-6s|%-37s|%-12s|%-12s|%-10s|%13s|%17s|%6s|%10s|%n";
+    public static final String LEARNER_PRINT_PATTERN = "|%-6s|%-22s|%-12s|%-10s|%-8s|%-8s|%n";
 
     // cái mảng lưu tất cả mọi Entity
     ArrayList<Entity> myList = new ArrayList<>();
@@ -56,7 +65,7 @@ public class EntityManager {
 
     public void searchTopicByName() {
         ArrayList<Topic> newList = new ArrayList<>();
-        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!");
+        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!", TOPICID_REGEX);
 
         // Lọc các chủ đề và thêm vào newList
         for (Entity entity : myList) {
@@ -88,7 +97,7 @@ public class EntityManager {
 
     // hàm search dựa trên topic
     public void searchCourseByTopic() {
-        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!");
+        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!", COURSEID_REGEX);
         ArrayList<Topic> topicsFound = searchTopicByName(topicName);
         ArrayList<Course> result = new ArrayList<>();
 
@@ -112,7 +121,7 @@ public class EntityManager {
 
     public void searchCourseByName() {
         ArrayList<Course> courseList = new ArrayList<>();
-        String courseName = Inputter.getString("Enter Course's name(Cxxx): ", "That field is required!");
+        String courseName = Inputter.getString("Enter Course's name(Cxxx): ", "That field is required!", COURSEID_REGEX);
         for (Entity entity : myList) {
             if (entity.getUniqueID().startsWith("C")) {
                 Course course = (Course) entity;
@@ -132,16 +141,16 @@ public class EntityManager {
             return;
         }
 
-        String keyId = Inputter.getString("Input topic's ID you want to remove(Txxx): ", "That field is required!");
+        String keyId = Inputter.getString("Input topic's ID you want to remove(Txxx): ", "That field is required!", TOPICID_REGEX);
         Entity entity = searchEntityById(keyId);
 
         entity = (Topic) entity;
         System.out.println("The topic information:");
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
-        System.out.printf(TOPIC_PATTERN, "ID", "Name", "Type", "Title", "Duration");
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
+        System.out.printf(TOPIC_PRINT_PATTERN, "ID", "Name", "Type", "Title", "Duration");
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
         System.out.println(entity);
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
 
         if (isConfirmed()) {
             myList.remove(entity);
@@ -152,15 +161,15 @@ public class EntityManager {
     }
 
     public void removeCourse() {
-        String keyId = Inputter.getString("Input course's ID you want to remove(Cxxx): ", "That field is required!");
+        String keyId = Inputter.getString("Input course's ID you want to remove(Cxxx): ", "That field is required!", COURSEID_REGEX);
         Entity entity = searchEntityById(keyId);
         entity = (Course) entity;
         System.out.println("The course information:");
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
-        System.out.printf(COURSE_PATTERN, "ID", "Name", "Topic", "Type", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
+        System.out.printf(COURSE_PRINT_PATTERN, "ID", "Name", "Topic", "Type", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
         System.out.println(entity);
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
 
         if (isConfirmed()) {
             myList.remove(entity);
@@ -183,13 +192,13 @@ public class EntityManager {
         Collections.sort(topicsList);
 
         // in ra
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
-        System.out.printf(TOPIC_PATTERN, "ID", "Name", "Type", "Title", "Duration");
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
+        System.out.printf(TOPIC_PRINT_PATTERN, "ID", "Name", "Type", "Title", "Duration");
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
         topicsList.forEach((topic) -> {
             System.out.println(topic);
         });
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
     }
 
     public void showTopicsList(ArrayList topicsList) {
@@ -201,13 +210,13 @@ public class EntityManager {
         // sort lại theo tên
         Collections.sort(topicsList);
         // in ra
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
-        System.out.printf(TOPIC_PATTERN, "ID", "Name", "Type", "Title", "Duration");
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
+        System.out.printf(TOPIC_PRINT_PATTERN, "ID", "Name", "Type", "Title", "Duration");
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
         topicsList.forEach((topic) -> {
             System.out.println(topic);
         });
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
     }
 
     // hàm in ra các course
@@ -223,13 +232,13 @@ public class EntityManager {
         Collections.sort(coursesList, orderByBeginDate);
 
         // in ra
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
-        System.out.printf(COURSE_PATTERN, "ID", "Name", "Type", "Topic", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
+        System.out.printf(COURSE_PRINT_PATTERN, "ID", "Name", "Type", "Topic", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
         coursesList.forEach((course) -> {
             System.out.println(course);
         });
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
     }
 
     public void showCoursesList(ArrayList coursesList) {
@@ -243,13 +252,13 @@ public class EntityManager {
         Collections.sort(coursesList, orderByBeginDate);
 
         // in ra
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
-        System.out.printf(COURSE_PATTERN, "ID", "Name", "Type", "Topic", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
+        System.out.printf(COURSE_PRINT_PATTERN, "ID", "Name", "Type", "Topic", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
         coursesList.forEach((course) -> {
             System.out.println(course);
         });
-        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
     }
 
     // hàm in ra các learner
@@ -262,13 +271,13 @@ public class EntityManager {
         }
 
         // in ra 
-        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
-        System.out.printf(LEARNER_PATTERN, "ID", "Name", "Birthday", "Course", "Score", "Status");
-        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
+        System.out.printf(LEARNER_PRINT_PATTERN, "ID", "Name", "Birthday", "Course", "Score", "Status");
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
         leanersList.forEach((learner) -> {
             System.out.println(learner);
         });
-        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
     }
 
     public void displayAllCourse() {
@@ -294,7 +303,7 @@ public class EntityManager {
         boolean isDup;
         do {
             isDup = false;
-            nId = Inputter.getString("Enter topic's Id(Txxx): ", "That field is required!").toUpperCase();
+            nId = Inputter.getString("Enter topic's Id(Txxx): ", "That field is required!", TOPICID_REGEX).toUpperCase();
 
             Entity entity = searchEntityById(nId);
             if (entity != null) {
@@ -321,7 +330,7 @@ public class EntityManager {
         boolean isDup;
         do {
             isDup = false;
-            nId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!").toUpperCase();
+            nId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!", COURSEID_REGEX).toUpperCase();
 
             Entity entity = searchEntityById(nId);
             if (entity != null) {
@@ -356,7 +365,7 @@ public class EntityManager {
         Topic topic;
         String nTopicID;
         do {
-            nTopicID = Inputter.getString("Enter topic's ID(Txxx): ", "That field is required!").toUpperCase();
+            nTopicID = Inputter.getString("Enter topic's ID(Txxx): ", "That field is required!", TOPICID_REGEX).toUpperCase();
             topic = (Topic) searchEntityById(nTopicID);
             if (topic == null) {
                 System.out.println("No topic found with ID: " + nTopicID + ". Please try again.");
@@ -378,7 +387,7 @@ public class EntityManager {
         boolean isDup;
         do {
             isDup = false;
-            nId = Inputter.getString("Enter learner's Id(Lxxx): ", "That field is required!").toUpperCase();
+            nId = Inputter.getString("Enter learner's Id(Lxxx): ", "That field is required!", LEARNERID_REGEX).toUpperCase();
 
             Entity entity = searchEntityById(nId);
             if (entity != null) {
@@ -392,7 +401,7 @@ public class EntityManager {
         String courseID;
         Course course;
         while (true) {
-            courseID = Inputter.getString("Enter course's ID(Cxxx): ", "That field is required!").toUpperCase();
+            courseID = Inputter.getString("Enter course's ID(Cxxx): ", "That field is required!", COURSEID_REGEX).toUpperCase();
             if (courseID.startsWith("C")) {
                 course = (Course) searchEntityById(courseID);
                 if (course == null) {
@@ -417,7 +426,7 @@ public class EntityManager {
 
     // các hàm update
     public void updateTopic() {
-        String uId = Inputter.getString("Enter Topic's Id(Txxx): ", "That field is required!").toUpperCase();
+        String uId = Inputter.getString("Enter Topic's Id(Txxx): ", "That field is required!", UPDATE_TOPICID_REGEX).toUpperCase();
 
         // Tìm kiếm thực thể dựa vào ID
         Entity entity = searchEntityById(uId);
@@ -430,11 +439,11 @@ public class EntityManager {
         Topic topic = (Topic) entity;
         //thông báo
         System.out.println("The topic information before updating");
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
-        System.out.printf(TOPIC_PATTERN, "ID", "Name", "Type", "Title", "Duration");
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
+        System.out.printf(TOPIC_PRINT_PATTERN, "ID", "Name", "Type", "Title", "Duration");
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
         System.out.println(topic);
-        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
         System.out.println("Updating.........");
 
         String uName = StringProcessor.toTitleCase(Inputter.getString("Enter topic's name or press Enter to skip: "));
@@ -471,7 +480,7 @@ public class EntityManager {
     }
 
     public void updateCourse() {
-        String uId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!").toUpperCase();
+        String uId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!", UPDATE_COURSEID_REGEX).toUpperCase();
 
         Entity entity = searchEntityById(uId);
         if (entity == null) {
@@ -488,16 +497,12 @@ public class EntityManager {
         // Kiểm tra topic có trong danh sách
         String uTopicID;
         Topic uTopic;
-        do {
-            uTopicID = Inputter.getString("Enter new topic ID (leave empty to keep current value): ").toLowerCase();
-            if (uTopicID.isEmpty()) {
-                break;
-            }
-            uTopic = (Topic) searchEntityById(uTopicID);
-            if (uTopic == null) {
-                System.out.println("No topic found with ID: " + uTopicID + ". Please try again.");
-            }
-        } while (uTopic == null);
+
+        uTopicID = Inputter.getString("Enter new topic ID (leave empty to keep current value): ", "That field is required!", UPDATE_COURSEID_REGEX).toUpperCase();
+        uTopic = (Topic) searchEntityById(uTopicID);
+        if (uTopic == null) {
+            System.out.println("No topic found with ID: " + uTopicID + ". Please try again.");
+        }
 
         String uBeginDate = course.getBeginDate();
         String uEndDate = course.getEndDate();
@@ -630,13 +635,13 @@ public class EntityManager {
         double score;
 
         uId = Inputter.getString("Enter learner's ID(Lxxx): ", "That field is required!").toUpperCase();
-        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
-        System.out.printf(LEARNER_PATTERN, "ID", "Name", "Birthday", "Course", "Score", "Status");
-        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
+        System.out.printf(LEARNER_PRINT_PATTERN, "ID", "Name", "Birthday", "Course", "Score", "Status");
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
 
         learner = (Learner) searchEntityById(uId);
         System.out.println(learner.toString());
-        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
 
         score = Inputter.getADouble("Enter Student's score: ", "That field is required!", 0, 10);
 

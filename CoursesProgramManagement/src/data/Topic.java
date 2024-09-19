@@ -44,7 +44,7 @@ class Topic extends Entity implements Comparable<Topic> {
     // other method
     @Override
     public String toString() {
-        String str = String.format(EntityManager.TOPIC_PATTERN.replace("%n", ""),
+        String str = String.format(EntityManager.TOPIC_PRINT_PATTERN.replace("%n", ""),
                 super.uniqueID, super.name, this.type, this.title, this.duration);
         return str;
     }

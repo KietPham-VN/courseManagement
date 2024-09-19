@@ -53,7 +53,7 @@ class Learner extends Entity {
     // other method
     @Override
     public String toString() {
-        String str = String.format(EntityManager.LEARNER_PATTERN.replace("%n", ""),
+        String str = String.format(EntityManager.LEARNER_PRINT_PATTERN.replace("%n", ""),
                 super.uniqueID, super.name, this.dateOfBirth, this.course, this.score, this.status);
         return str;
     }

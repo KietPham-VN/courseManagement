@@ -116,7 +116,7 @@ class Course extends Entity {
     // other function
     @Override
     public String toString() {
-        String str = String.format(EntityManager.COURSE_PATTERN.replace("%n", ""),
+        String str = String.format(EntityManager.COURSE_PRINT_PATTERN.replace("%n", ""),
                 super.uniqueID, super.name, this.type, this.topic, this.title, this.beginDate, this.endDate,
                 this.status, this.tuitionFee, this.passPercentage, this.size, this.maxSize
         );
