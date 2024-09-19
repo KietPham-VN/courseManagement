@@ -304,7 +304,7 @@ public class EntityManager {
         } while (isDup);
 
         String nName = StringProcessor.toTitleCase(Inputter.getString("Enter name: ", "That field is required!"));
-        String nType = StringProcessor.toTitleCase(Inputter.getString("Enter topic's type(long/short): ", "That field is required!"));
+        String nType = StringProcessor.toTitleCase(Inputter.getString("Enter topic's type(Long/Short): ", "That field is required!"));
         String nTitle = StringProcessor.toTitleCase(Inputter.getString("Enter topic's title: ", "That field is required!"));
         int nDuration = Inputter.getAnIntegerWithLowerBound("Enter topic's duration(week): ", "That field is required!", 0);
 
@@ -331,7 +331,7 @@ public class EntityManager {
         } while (isDup);
 
         String nName = StringProcessor.toTitleCase(Inputter.getString("Enter name: ", "That field is required!"));
-        String nType = StringProcessor.toTitleCase(Inputter.getString("Enter course's type(online/offline): ", "That field is required!"));
+        String nType = StringProcessor.toTitleCase(Inputter.getString("Enter course's type(Online/Offline): ", "That field is required!"));
         String nTitle = StringProcessor.toTitleCase(Inputter.getString("Enter course's title: ", "That field is required!"));
 
         String nBeginDate, nEndDate;
@@ -504,8 +504,8 @@ public class EntityManager {
 
         // Nhập mới endDate và kiểm tra các trường hợp, cho phép người dùng nhập lại nếu sai
         while (true) {
-            String newEndDate = StringProcessor.toTitleCase(Inputter.getString("Enter new end date (leave empty to keep current value): "));
-            String newBeginDate = StringProcessor.toTitleCase(Inputter.getString("Enter new begin date (leave empty to keep current value): "));
+            String newBeginDate = Inputter.getString("Enter new begin date (leave empty to keep current value): ");
+            String newEndDate = Inputter.getString("Enter new end date (leave empty to keep current value): ");
 
             try {
                 if (newBeginDate.isEmpty() && newEndDate.isEmpty()) {
@@ -608,7 +608,7 @@ public class EntityManager {
             if (!uTitle.isEmpty()) {
                 course.setTitle(uTitle);
             }
-            course.setTopic(uTopicID);
+            course.setTopic(uTopicID.toUpperCase());
             course.setBeginDate(uBeginDate);
             course.setEndDate(uEndDate);
             course.setPassPercentage(uPassPercentage);
@@ -674,9 +674,9 @@ public class EntityManager {
             while (line != null) {
                 StringTokenizer st = new StringTokenizer(line, "|");
                 String uniqueID = st.nextToken().trim().toUpperCase();
-                String name = st.nextToken().trim();
-                String type = st.nextToken().trim();
-                String title = st.nextToken().trim();
+                String name = StringProcessor.toTitleCase(st.nextToken().trim());
+                String type = StringProcessor.toTitleCase(st.nextToken().trim());
+                String title = StringProcessor.toTitleCase(st.nextToken().trim());
                 int duration = Integer.parseInt(st.nextToken().trim());
                 Topic topic = new Topic(uniqueID, name, type, title, duration);
                 myList.add(topic);
@@ -700,13 +700,13 @@ public class EntityManager {
             while (line != null) {
                 StringTokenizer st = new StringTokenizer(line, "|");
                 String uniqueID = st.nextToken().trim().toUpperCase();
-                String name = st.nextToken().trim();
-                String type = st.nextToken().trim();
-                String topic = st.nextToken().trim();
-                String title = st.nextToken().trim();
+                String name = StringProcessor.toTitleCase(st.nextToken().trim());
+                String type = StringProcessor.toTitleCase(st.nextToken().trim());
+                String topic = StringProcessor.toTitleCase(st.nextToken().trim());
+                String title = StringProcessor.toTitleCase(st.nextToken().trim());
                 String beginDate = st.nextToken().trim();
                 String endDate = st.nextToken().trim();
-                String status = st.nextToken().trim();
+                String status = StringProcessor.toTitleCase(st.nextToken().trim());
                 double passPercentage = Double.parseDouble(st.nextToken().trim());
                 double tuitionFee = Double.parseDouble(st.nextToken().trim());
                 int size = Integer.parseInt(st.nextToken().trim());
@@ -733,13 +733,13 @@ public class EntityManager {
 
                 StringTokenizer st = new StringTokenizer(line, "|");
                 String uniqueID = st.nextToken().trim().toUpperCase();
-                String name = st.nextToken().trim();
+                String name = StringProcessor.toTitleCase(st.nextToken().trim());
                 String dateOfBirth = st.nextToken().trim();
 
-                String course = st.nextToken().trim();
+                String course = st.nextToken().trim().toUpperCase();
                 double score = Double.parseDouble(st.nextToken().trim());
 
-                String status = st.nextToken().trim();
+                String status = StringProcessor.toTitleCase(st.nextToken().trim());
                 Learner learner = new Learner(uniqueID, name, dateOfBirth, course, score, status);
                 myList.add(learner);
                 line = reader.readLine();
