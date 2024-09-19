@@ -21,8 +21,7 @@ public class EntityManager {
     private static final String LEARNER_URL = "D:\\LearningMaterial\\FPTU\\LAB211\\Project\\CoursesProgramManagement\\learners.txt";
 
     //regex cho update
-    private static final String UPDATE_TOPICID_REGEX = "^([Tt]\\d+)?$";
-    private static final String UPDATE_COURSEID_REGEX = "^([Cc]\\d+)?$";
+    private static final String UPDATE_TOPICID_REGEX = "^[Tt]\\d*$";
 
     // regex cho hàm add
     private static final String TOPICID_REGEX = "[Tt]\\d+";
@@ -498,7 +497,7 @@ public class EntityManager {
         String uTopicID;
         Topic uTopic;
 
-        uTopicID = Inputter.getString("Enter new topic ID (leave empty to keep current value): ", "That field is required!", UPDATE_COURSEID_REGEX).toUpperCase();
+        uTopicID = Inputter.getString("Enter new topic ID (leave empty to keep current value): ", "That field is required!", UPDATE_TOPICID_REGEX).toUpperCase();
         uTopic = (Topic) searchEntityById(uTopicID);
         if (uTopic == null) {
             System.out.println("No topic found with ID: " + uTopicID + ". Please try again.");
