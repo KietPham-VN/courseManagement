@@ -1,0 +1,5 @@
+|C001|Introduction to Java          |Online |TOP001|Learn Java Basics                  |12-12-2020|12-12-2021|Active  |       80.0|    5250000.00| 135|     135|
+|C005|Web Development               |Online |TOP001|Full Stack Web Development         |2024-01-15|2024-05-15|Active  |      83.25|    5250000.00| 987|    1000|
+|C003|Digital Marketing Strategies  |Online |TOP004|Marketing in the Digital Age       |2024-01-20|2024-03-20|Active  |       76.7|    5250000.00|  96|     100|
+|C002|Artificial Intelligence       |Offline|TOP002|AI Fundamentals                    |2024-02-05|2024-04-05|Active  |       75.0|    5250000.00|  35|      40|
+|C004|Data Science Bootcamp         |Offline|TOP003|Become a Data Scientist            |2024-03-01|2024-06-01|Upcoming|       95.0|    5250000.00|  35|      35|

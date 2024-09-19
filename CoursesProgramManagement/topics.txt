@@ -1,0 +1,5 @@
+|TOP002|Artificial Intelligence       |short|harness the power of AI                           |       5|
+|TOP005|Digital Marketing             |Long |How to manipulate the market                      |      20|
+|TOP003|Math for beginer              |Long |The Power of math                                 |      10|
+|TOP004|Skills for academic's survial |short|how to get the most out of lectures               |       3|
+|TOP001|Software Engineer             |Long |learn the basic                                   |      10|
