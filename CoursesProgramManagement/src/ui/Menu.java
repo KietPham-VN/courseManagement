@@ -40,7 +40,7 @@ public class Menu {
     public static boolean isContinue() {
         String continueChoice;
         while (true) {
-            continueChoice = Inputter.getString("Do you wish to continue(y/n)? ", "That field is required");
+            continueChoice = Inputter.getString("Do you wish to continue(y/n)? ", "That field is required").trim();
             if (continueChoice.equalsIgnoreCase("y")
                     || continueChoice.equalsIgnoreCase("yes")) {
                 return true;

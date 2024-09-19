@@ -76,14 +76,16 @@ public class Inputter {
             upperBound = tmp;
         }
 
-        System.out.println(inpMsg);
         while (true) {
             try {
+                System.out.println(inpMsg);
+
                 int number = Integer.parseInt(sc.nextLine());
                 if (number < lowerBound || number > upperBound) {
                     System.out.println("The number must be in range of " + lowerBound + " and " + upperBound);
+                } else {
+                    return number;
                 }
-                return number;
             } catch (Exception e) {
                 System.out.println(errMsg);
             }
@@ -92,9 +94,10 @@ public class Inputter {
 
     //3. method ép người dùng nhập số thực
     public static double getADouble(String inpMsg, String errMsg) {
-        System.out.println(inpMsg);// hiển thị lời mời
         while (true) {
             try {
+                System.out.println(inpMsg);
+
                 double number = Double.parseDouble(sc.nextLine());
                 return number;
             } catch (NumberFormatException e) {

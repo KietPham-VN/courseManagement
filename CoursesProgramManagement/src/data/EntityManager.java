@@ -426,7 +426,7 @@ public class EntityManager {
 
     // các hàm update
     public void updateTopic() {
-        String uId = Inputter.getString("Enter Topic's Id(Txxx): ", "That field is required!", UPDATE_TOPICID_REGEX).toUpperCase();
+        String uId = Inputter.getString("Enter Topic's Id(Txxx): ", "That field is required!", TOPICID_REGEX).toUpperCase();
 
         // Tìm kiếm thực thể dựa vào ID
         Entity entity = searchEntityById(uId);
@@ -480,7 +480,7 @@ public class EntityManager {
     }
 
     public void updateCourse() {
-        String uId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!", UPDATE_COURSEID_REGEX).toUpperCase();
+        String uId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!", COURSEID_REGEX).toUpperCase();
 
         Entity entity = searchEntityById(uId);
         if (entity == null) {
@@ -659,7 +659,7 @@ public class EntityManager {
     public boolean isConfirmed() {
         String confirmation;
         while (true) {
-            confirmation = Inputter.getString("Are you sure(y/n)? ", "That field is required");
+            confirmation = Inputter.getString("Are you sure(y/n)? ", "That field is required").trim();
             if (confirmation.equalsIgnoreCase("y") || confirmation.equalsIgnoreCase("yes")) {
                 return true;
             } else if (confirmation.equalsIgnoreCase("n") || confirmation.equalsIgnoreCase("no")) {
