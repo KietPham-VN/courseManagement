@@ -142,7 +142,10 @@ public class EntityManager {
 
         String keyId = Inputter.getString("Input topic's ID you want to remove(Txxx): ", "That field is required!", TOPICID_REGEX);
         Entity entity = searchEntityById(keyId);
-
+        if (entity == null) {
+            System.out.println(keyId + " not found");
+            return;
+        }
         entity = (Topic) entity;
         System.out.println("The topic information:");
         StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PRINT_PATTERN));
@@ -162,6 +165,10 @@ public class EntityManager {
     public void removeCourse() {
         String keyId = Inputter.getString("Input course's ID you want to remove(Cxxx): ", "That field is required!", COURSEID_REGEX);
         Entity entity = searchEntityById(keyId);
+        if (entity == null) {
+            System.out.println(keyId + " not found");
+            return;
+        }
         entity = (Course) entity;
         System.out.println("The course information:");
         StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
@@ -489,6 +496,13 @@ public class EntityManager {
 
         Course course = (Course) entity;
 
+        System.out.println("The course information:");
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
+        System.out.printf(COURSE_PRINT_PATTERN, "ID", "Name", "Topic", "Type", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
+        System.out.println(entity);
+        StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PRINT_PATTERN));
+
         String uName = StringProcessor.toTitleCase(Inputter.getString("Enter new name (leave empty to keep current value): "));
         String uType = StringProcessor.toTitleCase(Inputter.getString("Enter new type (leave empty to keep current value): "));
         String uTitle = StringProcessor.toTitleCase(Inputter.getString("Enter new title (leave empty to keep current value): "));
@@ -633,12 +647,16 @@ public class EntityManager {
         Learner learner;
         double score;
 
-        uId = Inputter.getString("Enter learner's ID(Lxxx): ", "That field is required!").toUpperCase();
+        uId = Inputter.getString("Enter learner's ID(Lxxx): ", "That field is required!", LEARNERID_REGEX).toUpperCase();
+        Entity entity = searchEntityById(uId);
+        if (entity == null) {
+            System.out.println(uId + " not found");
+            return;
+        }
+        learner = (Learner) entity;
         StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
         System.out.printf(LEARNER_PRINT_PATTERN, "ID", "Name", "Birthday", "Course", "Score", "Status");
         StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
-
-        learner = (Learner) searchEntityById(uId);
         System.out.println(learner.toString());
         StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PRINT_PATTERN));
 
