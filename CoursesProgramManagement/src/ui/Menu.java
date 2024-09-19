@@ -48,7 +48,7 @@ public class Menu {
                     || continueChoice.equalsIgnoreCase("no")) {
                 return false;
             } else {
-                System.out.println("Vui lòng nhập y/n hoặc yes/no.");
+                System.out.println("Please enter y/n or yes/no.");
             }
         }
     }

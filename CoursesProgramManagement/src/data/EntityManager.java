@@ -21,9 +21,9 @@ public class EntityManager {
     private static final String LEARNER_URL = "D:\\LearningMaterial\\FPTU\\LAB211\\Project\\CoursesProgramManagement\\learners.txt";
 
     // những cái pattern để in ra cho đẹp
-    private static final String TOPIC_PATTERN = "|%-6s|%-30s|%-5s|%-50s|%-8s|%n";
-    private static final String COURSE_PATTERN = "|%-4s|%-30s|%-7s|%-6s|%-35s|%-10s|%-10s|%-8s|%11s|%15s|%4s|%8s|%n";
-    private static final String LEARNER_PATTERN = "|%-6s|%-20s|%-10s|%-8s|%-6s|%-6s|%n";
+    public static final String TOPIC_PATTERN = "|%-6s|%-32s|%-9s|%-50s|%-10s|%n";
+    public static final String COURSE_PATTERN = "|%-6s|%-32s|%-9s|%-6s|%-37s|%-12s|%-12s|%-10s|%13s|%17s|%6s|%10s|%n";
+    public static final String LEARNER_PATTERN = "|%-6s|%-22s|%-12s|%-10s|%-8s|%-8s|%n";
 
     // cái mảng lưu tất cả mọi Entity
     ArrayList<Entity> myList = new ArrayList<>();
@@ -56,7 +56,7 @@ public class EntityManager {
 
     public void searchTopicByName() {
         ArrayList<Topic> newList = new ArrayList<>();
-        String topicName = Inputter.getString("Enter topic's name: ", "That field is required!");
+        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!");
 
         // Lọc các chủ đề và thêm vào newList
         for (Entity entity : myList) {
@@ -88,7 +88,7 @@ public class EntityManager {
 
     // hàm search dựa trên topic
     public void searchCourseByTopic() {
-        String topicName = Inputter.getString("Enter topic's name: ", "That field is required!");
+        String topicName = Inputter.getString("Enter topic's name(Txxx): ", "That field is required!");
         ArrayList<Topic> topicsFound = searchTopicByName(topicName);
         ArrayList<Course> result = new ArrayList<>();
 
@@ -112,7 +112,7 @@ public class EntityManager {
 
     public void searchCourseByName() {
         ArrayList<Course> courseList = new ArrayList<>();
-        String courseName = Inputter.getString("Enter Course's name: ", "That field is required!");
+        String courseName = Inputter.getString("Enter Course's name(Cxxx): ", "That field is required!");
         for (Entity entity : myList) {
             if (entity.getUniqueID().startsWith("C")) {
                 Course course = (Course) entity;
@@ -132,7 +132,7 @@ public class EntityManager {
             return;
         }
 
-        String keyId = Inputter.getString("Input topic's ID you want to remove: ", "That field is required!");
+        String keyId = Inputter.getString("Input topic's ID you want to remove(Txxx): ", "That field is required!");
         Entity entity = searchEntityById(keyId);
 
         entity = (Topic) entity;
@@ -152,7 +152,7 @@ public class EntityManager {
     }
 
     public void removeCourse() {
-        String keyId = Inputter.getString("Input course's ID you want to remove: ", "That field is required!");
+        String keyId = Inputter.getString("Input course's ID you want to remove(Cxxx): ", "That field is required!");
         Entity entity = searchEntityById(keyId);
         entity = (Course) entity;
         System.out.println("The course information:");
@@ -170,8 +170,8 @@ public class EntityManager {
         }
     }
 
-// các hàm in nè
-// hàm in ra các topic
+    // các hàm in nè
+    // hàm in ra các topic
     public void showTopicsList() {
         ArrayList topicsList = searchEntityByIdFormat("T");
         if (topicsList.isEmpty()) {
@@ -224,7 +224,7 @@ public class EntityManager {
 
         // in ra
         StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
-        System.out.printf(COURSE_PATTERN, "ID", "Name", "Topic", "Type", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
+        System.out.printf(COURSE_PATTERN, "ID", "Name", "Type", "Topic", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
         StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
         coursesList.forEach((course) -> {
             System.out.println(course);
@@ -244,7 +244,7 @@ public class EntityManager {
 
         // in ra
         StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
-        System.out.printf(COURSE_PATTERN, "ID", "Name", "Topic", "Type", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
+        System.out.printf(COURSE_PATTERN, "ID", "Name", "Type", "Topic", "Title", "Begin Date", "End Date", "Status", "Tuition Fee", "Pass Percentage", "Size", "Max size");
         StringProcessor.printLine(StringProcessor.extractNumbers(COURSE_PATTERN));
         coursesList.forEach((course) -> {
             System.out.println(course);
@@ -294,7 +294,7 @@ public class EntityManager {
         boolean isDup;
         do {
             isDup = false;
-            nId = Inputter.getString("Enter topic's Id: ", "That field is required!");
+            nId = Inputter.getString("Enter topic's Id(Txxx): ", "That field is required!").toUpperCase();
 
             Entity entity = searchEntityById(nId);
             if (entity != null) {
@@ -303,10 +303,10 @@ public class EntityManager {
             }
         } while (isDup);
 
-        String nName = Inputter.getString("Enter name: ", "That field is required!");
-        String nType = Inputter.getString("Enter topic's type: ", "That field is required!");
-        String nTitle = Inputter.getString("Enter topic's title: ", "That field is required!");
-        int nDuration = Inputter.getAnIntegerWithLowerBound("Enter topic's duration: ", "That field is required!", 0);
+        String nName = StringProcessor.toTitleCase(Inputter.getString("Enter name: ", "That field is required!"));
+        String nType = StringProcessor.toTitleCase(Inputter.getString("Enter topic's type(long/short): ", "That field is required!"));
+        String nTitle = StringProcessor.toTitleCase(Inputter.getString("Enter topic's title: ", "That field is required!"));
+        int nDuration = Inputter.getAnIntegerWithLowerBound("Enter topic's duration(week): ", "That field is required!", 0);
 
         // tạo rồi thêm vào danh sách
         Topic nTopic = new Topic(nId, nName, nType, nTitle, nDuration);
@@ -321,7 +321,7 @@ public class EntityManager {
         boolean isDup;
         do {
             isDup = false;
-            nId = Inputter.getString("Enter course's Id: ", "That field is required!");
+            nId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!").toUpperCase();
 
             Entity entity = searchEntityById(nId);
             if (entity != null) {
@@ -330,9 +330,9 @@ public class EntityManager {
             }
         } while (isDup);
 
-        String nName = Inputter.getString("Enter name: ", "That field is required!");
-        String nType = Inputter.getString("Enter course's type: ", "That field is required!");
-        String nTitle = Inputter.getString("Enter course's title: ", "That field is required!");
+        String nName = StringProcessor.toTitleCase(Inputter.getString("Enter name: ", "That field is required!"));
+        String nType = StringProcessor.toTitleCase(Inputter.getString("Enter course's type(online/offline): ", "That field is required!"));
+        String nTitle = StringProcessor.toTitleCase(Inputter.getString("Enter course's title: ", "That field is required!"));
 
         String nBeginDate, nEndDate;
         while (true) {
@@ -349,14 +349,14 @@ public class EntityManager {
             }
         }
 
-        double nPassPercentage = Inputter.getADouble("Enter course's pass percentage: ", "That field is required!", 0, 100);
-        String nStatus = Inputter.getString("Enter course's status: ", "That field is required!");
+        double nPassPercentage = Inputter.getADouble("Enter course's pass percentage(%): ", "That field is required!", 0, 100);
+        String nStatus = StringProcessor.toTitleCase(Inputter.getString("Enter course's status(Active/Upcoming): ", "That field is required!"));
         double nTuituionFee = Inputter.getADouble("Enter course's tuition fee: ", "That field is required!");
 
         Topic topic;
         String nTopicID;
         do {
-            nTopicID = Inputter.getString("Enter topic's ID: ", "That field is required!");
+            nTopicID = Inputter.getString("Enter topic's ID(Txxx): ", "That field is required!").toUpperCase();
             topic = (Topic) searchEntityById(nTopicID);
             if (topic == null) {
                 System.out.println("No topic found with ID: " + nTopicID + ". Please try again.");
@@ -378,7 +378,7 @@ public class EntityManager {
         boolean isDup;
         do {
             isDup = false;
-            nId = Inputter.getString("Enter learner's Id: ", "That field is required!");
+            nId = Inputter.getString("Enter learner's Id(Lxxx): ", "That field is required!").toUpperCase();
 
             Entity entity = searchEntityById(nId);
             if (entity != null) {
@@ -387,25 +387,27 @@ public class EntityManager {
             }
         } while (isDup);
 
-        String nName = Inputter.getString("Enter name: ", "That field is required!");
+        String nName = StringProcessor.toTitleCase(Inputter.getString("Enter name: ", "That field is required!"));
         // Thêm Learner
         String courseID;
         Course course;
         while (true) {
-            courseID = Inputter.getString("Enter course's ID: ", "That field is required!");
-            course = (Course) searchEntityById(courseID);
-            if (course == null) {
-                System.out.println("The course " + courseID + " is currently not existing");
-            } else if (course.getSize() == course.getMaxSize()) {
-                System.out.println("The course has reached its maximum capacity");
-            } else {
-                break;
+            courseID = Inputter.getString("Enter course's ID(Cxxx): ", "That field is required!").toUpperCase();
+            if (courseID.startsWith("C")) {
+                course = (Course) searchEntityById(courseID);
+                if (course == null) {
+                    System.out.println("The course " + courseID + " is currently not existing");
+                } else if (course.getSize() == course.getMaxSize()) {
+                    System.out.println("The course has reached its maximum capacity");
+                } else {
+                    break;
+                }
             }
         }
 
         String nBirthday = Inputter.getString("Enter learner's birthday (yyyy-MM-dd): ", "That field is required!");
         double nScore = Inputter.getADouble("Enter learner's score: ", "That field is required!", 0, 100);
-        String nStatus = Inputter.getString("Enter learner's status: ", "That field is required!");
+        String nStatus = StringProcessor.toTitleCase(Inputter.getString("Enter learner's status(pass/fail): ", "That field is required!"));
 
         Learner nLearner = new Learner(nId, nName, nBirthday, courseID, nScore, nStatus);
         course.setSize(course.getSize() + 1);
@@ -415,12 +417,12 @@ public class EntityManager {
 
     // các hàm update
     public void updateTopic() {
-        String uId = Inputter.getString("Enter Topic's Id: ", "That field is required!");
+        String uId = Inputter.getString("Enter Topic's Id(Txxx): ", "That field is required!").toUpperCase();
 
         // Tìm kiếm thực thể dựa vào ID
         Entity entity = searchEntityById(uId);
         if (entity == null) {
-            System.out.println("The topic with ID: " + uId + " does not exist.");
+            System.out.println("The topic with ID(Txxx): " + uId + " does not exist.");
             return;
         }
 
@@ -435,9 +437,9 @@ public class EntityManager {
         StringProcessor.printLine(StringProcessor.extractNumbers(TOPIC_PATTERN));
         System.out.println("Updating.........");
 
-        String uName = Inputter.getString("Enter topic's name or press Enter to skip: ");
-        String uType = Inputter.getString("Enter topic's type or press Enter to skip: ");
-        String uTitle = Inputter.getString("Enter topic's title or press Enter to skip: ");
+        String uName = StringProcessor.toTitleCase(Inputter.getString("Enter topic's name or press Enter to skip: "));
+        String uType = StringProcessor.toTitleCase(Inputter.getString("Enter topic's type or press Enter to skip: "));
+        String uTitle = StringProcessor.toTitleCase(Inputter.getString("Enter topic's title or press Enter to skip: "));
 
         String uDuration;
         while (true) {
@@ -469,42 +471,41 @@ public class EntityManager {
     }
 
     public void updateCourse() {
-        String uId = Inputter.getString("Enter course's Id: ", "That field is required!");
+        String uId = Inputter.getString("Enter course's Id(Cxxx): ", "That field is required!").toUpperCase();
 
-        // Tìm kiếm thực thể dựa vào ID
         Entity entity = searchEntityById(uId);
         if (entity == null) {
-            System.out.println("The course with ID: " + uId + " does not exist.");
+            System.out.println("The course with ID(Cxxx): " + uId + " does not exist.");
             return;
         }
 
         Course course = (Course) entity;
 
-        String tempName = Inputter.getString("Enter new name (leave empty to keep current value): ");
-        String tempType = Inputter.getString("Enter new type (leave empty to keep current value): ");
-        String tempTitle = Inputter.getString("Enter new title (leave empty to keep current value): ");
+        String uName = StringProcessor.toTitleCase(Inputter.getString("Enter new name (leave empty to keep current value): "));
+        String uType = StringProcessor.toTitleCase(Inputter.getString("Enter new type (leave empty to keep current value): "));
+        String uTitle = StringProcessor.toTitleCase(Inputter.getString("Enter new title (leave empty to keep current value): "));
 
         // Kiểm tra topic có trong danh sách
-        String tempTopicID;
-        Topic tempTopic;
+        String uTopicID;
+        Topic uTopic;
         do {
-            tempTopicID = Inputter.getString("Enter new topic ID (leave empty to keep current value): ");
-            if (tempTopicID.isEmpty()) {
-                break; // Giữ nguyên topic cũ
+            uTopicID = Inputter.getString("Enter new topic ID (leave empty to keep current value): ").toLowerCase();
+            if (uTopicID.isEmpty()) {
+                break;
             }
-            tempTopic = (Topic) searchEntityById(tempTopicID);
-            if (tempTopic == null) {
-                System.out.println("No topic found with ID: " + tempTopicID + ". Please try again.");
+            uTopic = (Topic) searchEntityById(uTopicID);
+            if (uTopic == null) {
+                System.out.println("No topic found with ID: " + uTopicID + ". Please try again.");
             }
-        } while (tempTopic == null);
+        } while (uTopic == null);
 
-        String tempBeginDate = course.getBeginDate();
-        String tempEndDate = course.getEndDate();
+        String uBeginDate = course.getBeginDate();
+        String uEndDate = course.getEndDate();
 
         // Nhập mới endDate và kiểm tra các trường hợp, cho phép người dùng nhập lại nếu sai
         while (true) {
-            String newEndDate = Inputter.getString("Enter new end date (leave empty to keep current value): ");
-            String newBeginDate = Inputter.getString("Enter new begin date (leave empty to keep current value): ");
+            String newEndDate = StringProcessor.toTitleCase(Inputter.getString("Enter new end date (leave empty to keep current value): "));
+            String newBeginDate = StringProcessor.toTitleCase(Inputter.getString("Enter new begin date (leave empty to keep current value): "));
 
             try {
                 if (newBeginDate.isEmpty() && newEndDate.isEmpty()) {
@@ -513,18 +514,18 @@ public class EntityManager {
 
                 if (newBeginDate.isEmpty()) {
                     // Kiểm tra nếu chỉ có endDate mới
-                    if (StringProcessor.parseDate(tempBeginDate, "yyyy-MM-dd").after(StringProcessor.parseDate(newEndDate, "yyyy-MM-dd"))) {
-                        System.out.println("End date must be after the current begin date (" + tempBeginDate + "). Please try again.");
+                    if (StringProcessor.parseDate(uBeginDate, "yyyy-MM-dd").after(StringProcessor.parseDate(newEndDate, "yyyy-MM-dd"))) {
+                        System.out.println("End date must be after the current begin date (" + uBeginDate + "). Please try again.");
                     } else {
-                        tempEndDate = newEndDate;
+                        uEndDate = newEndDate;
                         break;
                     }
                 } else if (newEndDate.isEmpty()) {
                     // Kiểm tra nếu chỉ có beginDate mới
-                    if (StringProcessor.parseDate(newBeginDate, "yyyy-MM-dd").after(StringProcessor.parseDate(tempEndDate, "yyyy-MM-dd"))) {
-                        System.out.println("Begin date must be before the current end date (" + tempEndDate + "). Please try again.");
+                    if (StringProcessor.parseDate(newBeginDate, "yyyy-MM-dd").after(StringProcessor.parseDate(uEndDate, "yyyy-MM-dd"))) {
+                        System.out.println("Begin date must be before the current end date (" + uEndDate + "). Please try again.");
                     } else {
-                        tempBeginDate = newBeginDate;
+                        uBeginDate = newBeginDate;
                         break;
                     }
                 } else {
@@ -532,8 +533,8 @@ public class EntityManager {
                     if (StringProcessor.parseDate(newBeginDate, "yyyy-MM-dd").after(StringProcessor.parseDate(newEndDate, "yyyy-MM-dd"))) {
                         System.out.println("End date must be after the begin date. Please try again.");
                     } else {
-                        tempBeginDate = newBeginDate;
-                        tempEndDate = newEndDate;
+                        uBeginDate = newBeginDate;
+                        uEndDate = newEndDate;
                         break;
                     }
                 }
@@ -543,12 +544,12 @@ public class EntityManager {
         }
 
         // Kiểm tra passPercentage và tuitionFee
-        String tempPassPercentageStr = Inputter.getString("Enter new pass percentage (leave empty to keep current value): ");
-        double tempPassPercentage = course.getPassPercentage();
-        while (!tempPassPercentageStr.isEmpty()) {
+        String uPassPercentageStr = Inputter.getString("Enter new pass percentage (leave empty to keep current value): ");
+        double uPassPercentage = course.getPassPercentage();
+        while (!uPassPercentageStr.isEmpty()) {
             try {
-                tempPassPercentage = Double.parseDouble(tempPassPercentageStr);
-                if (tempPassPercentage >= 0 && tempPassPercentage <= 100) {
+                uPassPercentage = Double.parseDouble(uPassPercentageStr);
+                if (uPassPercentage >= 0 && uPassPercentage <= 100) {
                     break;
                 } else {
                     System.out.println("Please enter a valid pass percentage (0-100)!");
@@ -556,15 +557,15 @@ public class EntityManager {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a valid percentage.");
             }
-            tempPassPercentageStr = Inputter.getString("Enter new pass percentage (leave empty to keep current value): ");
+            uPassPercentageStr = Inputter.getString("Enter new pass percentage (leave empty to keep current value): ");
         }
 
-        String tempTuitionFeeStr = Inputter.getString("Enter new tuition fee (leave empty to keep current value): ");
-        double tempTuitionFee = course.getTuitionFee();
-        while (!tempTuitionFeeStr.isEmpty()) {
+        String uTuitionFeeStr = Inputter.getString("Enter new tuition fee (leave empty to keep current value): ");
+        double uTuitionFee = course.getTuitionFee();
+        while (!uTuitionFeeStr.isEmpty()) {
             try {
-                tempTuitionFee = Double.parseDouble(tempTuitionFeeStr);
-                if (tempTuitionFee >= 0) {
+                uTuitionFee = Double.parseDouble(uTuitionFeeStr);
+                if (uTuitionFee >= 0) {
                     break;
                 } else {
                     System.out.println("Please enter a valid tuition fee (>= 0)!");
@@ -572,51 +573,50 @@ public class EntityManager {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a valid number.");
             }
-            tempTuitionFeeStr = Inputter.getString("Enter new tuition fee (leave empty to keep current value): ");
+            uTuitionFeeStr = Inputter.getString("Enter new tuition fee (leave empty to keep current value): ");
         }
 
         // Kiểm tra size và maxSize
-        int tempSize = course.getSize();
-        int tempMaxSize = course.getMaxSize();
+        int uSize = course.getSize();
+        int uMaxSize = course.getMaxSize();
         while (true) {
-            String tempMaxSizeStr = Inputter.getString("Enter new max size (leave empty to keep current value): ");
-            if (!tempMaxSizeStr.isEmpty()) {
-                tempMaxSize = Integer.parseInt(tempMaxSizeStr);
+            String uMaxSizeStr = Inputter.getString("Enter new max size (leave empty to keep current value): ");
+            if (!uMaxSizeStr.isEmpty()) {
+                uMaxSize = Integer.parseInt(uMaxSizeStr);
             }
-            String tempSizeStr = Inputter.getString("Enter new size (leave empty to keep current value): ");
-            if (!tempSizeStr.isEmpty()) {
-                tempSize = Integer.parseInt(tempSizeStr);
+            String uSizeStr = Inputter.getString("Enter new size (leave empty to keep current value): ");
+            if (!uSizeStr.isEmpty()) {
+                uSize = Integer.parseInt(uSizeStr);
             }
-            if (tempSize <= tempMaxSize) {
+            if (uSize <= uMaxSize) {
                 break; // Size hợp lệ
             } else {
                 System.out.println("Size must be less than or equal to max size. Please try again.");
             }
         }
 
-        // Kiểm tra status
-        String tempStatus = Inputter.getString("Enter new status (leave empty to keep current value): ");
+        String uStatus = StringProcessor.toTitleCase(Inputter.getString("Enter new status (leave empty to keep current value): "));
 
         // Xác nhận trước khi cập nhật
         if (isConfirmed()) {
-            if (!tempName.isEmpty()) {
-                course.setName(tempName);
+            if (!uName.isEmpty()) {
+                course.setName(uName);
             }
-            if (!tempType.isEmpty()) {
-                course.setType(tempType);
+            if (!uType.isEmpty()) {
+                course.setType(uType);
             }
-            if (!tempTitle.isEmpty()) {
-                course.setTitle(tempTitle);
+            if (!uTitle.isEmpty()) {
+                course.setTitle(uTitle);
             }
-            course.setTopic(tempTopicID);
-            course.setBeginDate(tempBeginDate);
-            course.setEndDate(tempEndDate);
-            course.setPassPercentage(tempPassPercentage);
-            course.setTuitionFee(tempTuitionFee);
-            course.setSize(tempSize);
-            course.setMaxSize(tempMaxSize);
-            if (!tempStatus.isEmpty()) {
-                course.setStatus(tempStatus);
+            course.setTopic(uTopicID);
+            course.setBeginDate(uBeginDate);
+            course.setEndDate(uEndDate);
+            course.setPassPercentage(uPassPercentage);
+            course.setTuitionFee(uTuitionFee);
+            course.setSize(uSize);
+            course.setMaxSize(uMaxSize);
+            if (!uStatus.isEmpty()) {
+                course.setStatus(uStatus);
             }
             System.out.println("Course updated successfully.");
         } else {
@@ -628,26 +628,26 @@ public class EntityManager {
         String uId;
         Learner learner;
         double score;
-        while (true) {
-            uId = Inputter.getString("Enter learner's ID: ", "That field is required!");
-            StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
-            System.out.printf("|%-6s|%-20s|%-10s|%-8s|%-6s|%n", "ID", "Name", "Birthday", "Course", "Score");
-            StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
 
-            learner = (Learner) searchEntityById(uId);
-            System.out.println(learner.toString());
-            StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
+        uId = Inputter.getString("Enter learner's ID(Lxxx): ", "That field is required!").toUpperCase();
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
+        System.out.printf(LEARNER_PATTERN, "ID", "Name", "Birthday", "Course", "Score", "Status");
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
 
-            score = Inputter.getADouble("Enter Student's score: ", "That field is required!", 0, 10);
+        learner = (Learner) searchEntityById(uId);
+        System.out.println(learner.toString());
+        StringProcessor.printLine(StringProcessor.extractNumbers(LEARNER_PATTERN));
 
-            if (isConfirmed()) {
-                learner.setScore(score);
-                System.out.println("Score has been set");
-                System.out.println("Update successful");
-            } else {
-                System.out.println("Update canceled.");
-            }
+        score = Inputter.getADouble("Enter Student's score: ", "That field is required!", 0, 10);
+
+        if (isConfirmed()) {
+            learner.setScore(score);
+            System.out.println("Score has been set");
+            System.out.println("Update successful");
+        } else {
+            System.out.println("Update canceled.");
         }
+
     }
 
     // hàm xác nhận dùng khi có update hoặc xóa

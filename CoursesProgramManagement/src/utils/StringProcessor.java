@@ -57,6 +57,7 @@ public class StringProcessor {
         System.out.println();
     }
 
+    // hàm lấy ra số từ chuỗi
     public static int[] extractNumbers(String input) {
         ArrayList<Integer> numberList = new ArrayList<>();
         Pattern pattern = Pattern.compile("-(\\d+)|\\d+");
@@ -64,9 +65,26 @@ public class StringProcessor {
 
         while (matcher.find()) {
             String number = matcher.group();
-            numberList.add(Integer.parseInt(number.replace("-", ""))); // Bỏ dấu '-' nếu có
+            numberList.add(Integer.parseInt(number.replace("-", "")));
         }
         return numberList.stream().mapToInt(i -> i).toArray();
     }
 
+    // hàm viết hoa chữ cái đầu tiên
+    public static String toTitleCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return str;
+        }
+        String[] words = str.toLowerCase().split("\\s+");
+        StringBuilder capitalizedWords = new StringBuilder();
+
+        for (String word : words) {
+            if (word.length() > 0) {
+                capitalizedWords.append(Character.toUpperCase(word.charAt(0)))
+                        .append(word.substring(1))
+                        .append(" ");
+            }
+        }
+        return capitalizedWords.toString().trim();
+    }
 }
